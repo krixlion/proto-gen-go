@@ -1,0 +1,6 @@
+*.env
+
+testdata/*
+
+!testdata/api/
+!testdata/go.mod

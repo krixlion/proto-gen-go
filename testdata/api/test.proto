@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package test;
+
+option go_package="github.com/krixlion/test/pkg/grpc/pb;pb";
+
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+
+service TestService {
+  rpc ListTests(ListTestsRequest) returns (ListTestsResponse) {}
+
+  rpc GetTest(GetTestRequest) returns (Test) {}
+
+  rpc CreateTest(CreateTestRequest) returns (Test) {}
+
+  rpc UpdateTest(UpdateTestRequest) returns (Test) {}
+
+  rpc DeleteTest(DeleteTestRequest) returns (google.protobuf.Empty) {}
+}
+
+message Test {}
+
+message ListTestsRequest {
+  string parent = 1;
+
+  int32 page_size = 2;
+
+  string page_token = 3;
+}
+
+message ListTestsResponse {
+  repeated Test Tests = 1;
+
+  string next_page_token = 2;
+}
+
+message GetTestRequest {
+  string name = 1;
+}
+
+message CreateTestRequest {
+  Test Test = 3;
+}
+
+message UpdateTestRequest {
+  Test Test = 1;
+
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteTestRequest {
+  string name = 1;
+}
