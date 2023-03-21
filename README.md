@@ -23,7 +23,7 @@ Container will read everything from `/app` and that's where you should mount you
 ### Docker run 
 
 ```sh
-$ docker run  -v $(pwd)/project/root:/app \
+$ docker run -v $(pwd)/project/root:/app \
     -e DOC_OUT=docs/ \
     -e PROTO_DIRPATH=api/ \
     -e PROTO_FILENAME=api.proto \
