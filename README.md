@@ -36,7 +36,7 @@ $ docker run -v $(pwd)/project/root:/app \
 Or define these values in the .env file:
 
 ```sh
-$  docker run  -v $(pwd)/project/root:/app \
+$ docker run -v $(pwd)/project/root:/app \
     --env-file .env \
     krixlion/go-grpc-gen:1.19.3
 ```
