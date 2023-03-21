@@ -23,7 +23,7 @@ Container will read everything from `/app` and that's where you should mount you
 ### Docker run 
 
 ```sh
-$ docker run -v $(pwd)/project/root:/app \
+$ docker run --rm -v $(pwd)/project/root:/app \
     -e DOC_OUT=docs/ \
     -e PROTO_DIRPATH=api/ \
     -e PROTO_FILENAME=api.proto \
@@ -36,7 +36,7 @@ $ docker run -v $(pwd)/project/root:/app \
 Or define these values in the .env file:
 
 ```sh
-$ docker run -v $(pwd)/project/root:/app \
+$ docker run --rm -v $(pwd)/project/root:/app \
     --env-file .env \
     krixlion/go-grpc-gen:1.19.3
 ```
