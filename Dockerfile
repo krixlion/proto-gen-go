@@ -1,14 +1,16 @@
 FROM golang:1.19.3
 
+
 ADD entrypoint.sh /
 
+RUN apt-get update 
+RUN apt-get install unzip
 RUN git clone https://github.com/googleapis/api-common-protos /google
 
 WORKDIR /app
 
 # Install protoc
 RUN curl -LOSs https://github.com/protocolbuffers/protobuf/releases/download/v22.2/protoc-22.2-linux-x86_64.zip 
-RUN apt-get update && apt-get install unzip
 RUN unzip protoc-22.2-linux-x86_64.zip -d ./proto
 RUN chmod 755 -R ./proto/bin
 

@@ -1,7 +1,7 @@
 build:
-	docker build . -t go-grpc-gen
+	docker build . -t krixlion/go-grpc-gen
 	
 run:
 	docker run  -v $(shell pwd)/testdata:/app \
 		--env-file .env \
-		go-grpc-gen
+		krixlion/go-grpc-gen

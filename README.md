@@ -29,7 +29,7 @@ $ docker run  -v $(pwd)/project/root:/app \
     -e PROTO_FILENAME=api.proto \
     -e MODULE_NAME=github.com/org/project \
     -e PB_PATH=pkg/api \
-		go-grpc-gen
+		krixlion/go-grpc-gen:1.19.3
 
 ```
 
@@ -38,5 +38,5 @@ Or define these values in the .env file:
 ```sh
 $  docker run  -v $(pwd)/project/root:/app \
     --env-file .env \
-    go-grpc-gen
+    krixlion/go-grpc-gen:1.19.3
 ```
