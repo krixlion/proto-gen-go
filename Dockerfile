@@ -1,4 +1,4 @@
-FROM golang:1.19.3
+FROM golang:1.21.0
 
 
 ADD entrypoint.sh /

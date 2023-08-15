@@ -1,0 +1,46 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+        
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD}}
+      
+    - name: Prepare version
+      id: prep
+      run: |
+          IMAGE=krixlion/go-grpc-gen
+          VERSION=$(grep FROM Dockerfile | awk '{ print $2 }' | cut -d ':' -f 2)
+          TAGS="${IMAGE}:${VERSION},${IMAGE}:${GITHUB_SHA::8},${IMAGE}:latest"
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          
+    - name: Build and push image
+      uses: docker/build-push-action@v3
+      with:
+        context: ./
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.prep.outputs.tags }}
+        labels: |
+            org.opencontainers.image.title=go-grpc-gen
+            org.opencontainers.image.description='Docker image for hot code reload and debug server for Go'
+            org.opencontainers.image.url=https://github.com/krixlion/go-grpc-gen
+            org.opencontainers.image.source=${{ github.event.repository.clone_url }}
+            org.opencontainers.image.version=${{ steps.prep.outputs.version }}
+            org.opencontainers.image.created=${{ steps.prep.outputs.created }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.licenses=${{ github.event.repository.license.spdx_id }}
+            
