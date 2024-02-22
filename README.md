@@ -1,4 +1,4 @@
-# proto-gen-go
+# go-grpc-gen
 
 This is the repo for my [docker image](https://hub.docker.com/r/krixlion/go-grpc-gen) that I use for development of microservices in go.
 
