@@ -6,7 +6,7 @@ protoc \
     -I /app/$PROTO_DIRPATH \
     -I /google \
     --doc_out=$DOC_OUT \
-    --doc_opt=markdown,api.md \
+    --doc_opt=markdown,$(basename $PROTO_FILENAME .proto).md \
     --go-grpc_out=module=$MODULE_NAME:/app/. \
     --go_out=module=$MODULE_NAME:/app/. \
     $PROTO_FILENAME
