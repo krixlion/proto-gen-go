@@ -10,7 +10,7 @@ This is the repo for my [docker image](https://hub.docker.com/r/krixlion/go-grpc
 
 ## Environment variables
 **DOC_OUT** - where should doc files be created \
-**PROTO_DIRPATH** - path to directory containing necessary proto files \
+**PROTO_DIRPATH** - path to directory containing proto files, passed directly to `protoc` `-I` flag \
 **PROTO_FILENAME** - name of proto file to compile \
 **MODULE_NAME** - go module name eg. "github.com/krixlion/go-reflex-dlv" \
 **PB_PATH** - relative path to directory where generated files should be placed
